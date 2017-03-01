@@ -25,6 +25,7 @@ mv trainset14_032015.pds/* data/references/
 rmdir trainset14_032015.pds
 rm Trainset14_032015.pds.tgz
 
+
 # Generate a customized version of the SILVA reference database that targets the V4 region
 code/mothur/mothur "#pcr.seqs(fasta=data/references/silva.seed.align, start=11894, end=25319, keepdots=F, processors=8)"
 mv data/references/silva.seed.pcr.align data/references/silva.v4.align
@@ -33,8 +34,14 @@ mv data/references/silva.seed.pcr.align data/references/silva.v4.align
 #Process raw sequences to the point where they are fully curated
 code/mothur/mothur code/get_good_seqs.batch
 
+
 #Calculate the sequencing error rate
 code/mothur/mothur code/get_error.batch
 
+
 #Generate the shared files
 code/mothur/mothur code/get_shared_otus.batch
+
+
+# Generate the nmds.axes file from our data
+code/mothur/mothur code/get_nmds_data.batch
